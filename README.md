@@ -1,3 +1,2 @@
-# Service repo:
-this Repo is only to host the static Files for h5p Editor und Player 
-from h5p Repos to the the schulcloud server 
+# Serving the H5P Static Files:
+This Repo contains the docker configuration for nginx-image to serve the static Files for h5p Editor and Player from h5p Repos required by the schulcloud Application.

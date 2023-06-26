@@ -1,0 +1,15 @@
+types {
+  text/html                             html htm shtml;
+  text/css                              css;
+  text/scss                             scss;
+  application/x-httpd-php               php;
+  application/json                      json;
+  text/javascript                       js;
+  text/plain                            txt;
+  image/png                             png;
+  font/woff2                            woff2;
+  font/eot                              eot;
+  font/svg                              svg;
+  font/woff                             woff;
+  font/ttf                              ttf;
+}
