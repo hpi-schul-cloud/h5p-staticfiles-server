@@ -62,24 +62,24 @@ jobs:
         run: echo "branch=${GITHUB_REF#refs/heads/}" >> $GITHUB_OUTPUT
         id: extract_branch
 
-  # deploy:
-  #   needs:
-  #     - build_and_push
-  #     - branch_name
-  #   uses: hpi-schul-cloud/h5p-staticfiles-server/.github/workflows/push.yml@main 
-  #   with:
-  #     branch: ${{ needs.branch_name.outputs.branch }}
-  #   secrets:
-  #     token: ${{ secrets.GITHUB_TOKEN }}
-  #     DEV_VAULT: ${{ secrets.DEV_VAULT }}
-  #     DEV_KUBE_CONFIG: ${{ secrets.DEV_KUBE_CONFIG }}
+  deploy:
+    needs:
+      - build_and_push
+      - branch_name
+    uses: hpi-schul-cloud/h5p-staticfiles-server/.github/workflows/push.yml@main 
+    with:
+      branch: ${{ needs.branch_name.outputs.branch }}
+    secrets:
+      token: ${{ secrets.GITHUB_TOKEN }}
+      DEV_VAULT: ${{ secrets.DEV_VAULT }}
+      DEV_KUBE_CONFIG: ${{ secrets.DEV_KUBE_CONFIG }}
 
-  # deploy-successful:
-  #   needs:
-  #     - deploy
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #    - run: echo "deploy was successful"
+  deploy-successful:
+    needs:
+      - deploy
+    runs-on: ubuntu-latest
+    steps:
+     - run: echo "deploy was successful"
 
   trivy-vulnerability-scanning:
     needs:
