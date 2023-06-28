@@ -2,8 +2,7 @@ name: Build and push Docker Image
 
 on:
   push
-
-workflow_dispatch:   
+ 
 
 permissions:
   contents: read
