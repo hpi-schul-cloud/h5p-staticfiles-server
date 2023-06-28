@@ -66,7 +66,7 @@ jobs:
     needs:
       - build_and_push
       - branch_name
-    uses: hpi-schul-cloud/h5p-staticfiles-server/.github/workflows/push.yml
+    uses: hpi-schul-cloud/h5p-staticfiles-server/.github/workflows/push.yml@THR-28-docker-static-h5p-files
     with:
       branch: ${{ needs.branch_name.outputs.branch }}
     secrets:
