@@ -1,8 +1,9 @@
 name: Build and push Docker Image
 
 on:
-  push
- 
+  push:
+    branches-ignore:
+      - dependabot/**
 
 permissions:
   contents: read
