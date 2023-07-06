@@ -6,7 +6,7 @@ metadata:
   labels:
     app: h5p-staticfiles-server
 spec:
-  replicas: {{ h5p-staticfiles-server_REPLICAS|default("1", true) }}
+  replicas: {{ H5P_STATICFILES_SERVER_REPLICAS|default("1", true) }}
   selector:
     matchLabels:
       app: h5p-staticfiles-server
@@ -24,7 +24,7 @@ spec:
         runAsNonRoot: true
       containers:
       - name: h5p-staticfiles-server
-        image: {{ SCHULCLOUD_h5p-staticfiles-server_IMAGE }}:{{ SCHULCLOUD_h5p-staticfiles-server_IMAGE_TAG }}
+        image: {{ H5P_STATICFILES_SERVER_IMAGE }}:{{ H5P_STATICFILES_SERVER_IMAGE_TAG }}
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 3000
