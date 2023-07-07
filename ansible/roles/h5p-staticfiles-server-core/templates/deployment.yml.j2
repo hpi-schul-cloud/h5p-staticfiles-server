@@ -31,8 +31,6 @@ spec:
         envFrom:
         - configMapRef:
             name: h5p-staticfiles-server-configmap
-        - secretRef:
-            name: h5p-staticfiles-server-secret
         livenessProbe:
           failureThreshold: 3
           httpGet:
