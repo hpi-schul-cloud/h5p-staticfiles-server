@@ -15,13 +15,13 @@ spec:
       labels:
         app: h5p-staticfiles-server
     spec:
-      securityContext:
+     # securityContext:
         #readOnlyRootFilesystem: true
         # run as user node (uid 1000)
-        runAsUser: 1000
-        runAsGroup: 1000
-        fsGroup: 1000
-        runAsNonRoot: true
+     #   runAsUser: 1000
+     #   runAsGroup: 1000
+     #   fsGroup: 1000
+     #   runAsNonRoot: true
       containers:
       - name: h5p-staticfiles-server
         image: {{ H5P_STATICFILES_SERVER_IMAGE }}:{{ H5P_STATICFILES_SERVER_IMAGE_TAG }}
