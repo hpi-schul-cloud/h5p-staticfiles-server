@@ -27,7 +27,7 @@ spec:
         image: {{ H5P_STATICFILES_SERVER_IMAGE }}:{{ H5P_STATICFILES_SERVER_IMAGE_TAG }}
         imagePullPolicy: IfNotPresent
         ports:
-        - containerPort: 8080
+        - containerPort: {{ H5P_PORT }}
         envFrom:
         - configMapRef:
             name: h5p-staticfiles-server-configmap
@@ -35,7 +35,7 @@ spec:
           failureThreshold: 3
           httpGet:
             path: /ping
-            port: 8080
+            port: {{ H5P_PORT }}
             scheme: HTTP
           periodSeconds: 15
           successThreshold: 1
@@ -44,7 +44,7 @@ spec:
           failureThreshold: 3
           httpGet:
             path: /ping
-            port: 8080
+            port: {{ H5P_PORT }}
             scheme: HTTP
           periodSeconds: 5
           successThreshold: 1
@@ -53,12 +53,13 @@ spec:
           failureThreshold: 4
           httpGet:
             path: /ping
-            port: 8080
+            port: {{ H5P_PORT }}
             scheme: HTTP
           periodSeconds: 15
           successThreshold: 1
           timeoutSeconds: 4
         resources:
+          # find reasonable limits
           limits:
             cpu: {{ H5P_STATICFIILES_SERVER_CPU_LIMITS|default("1000m", true) }}
             memory: {{ H5P_STATICFIILES_SERVER_MEMORY_LIMITS|default("1Gi", true) }}

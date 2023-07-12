@@ -20,6 +20,7 @@ FROM nginx:alpine
 COPY nginx.conf /etc/nginx/nginx.conf
 
 # Copy H5P files to webroot
+RUN rm -r /usr/share/nginx/html/*
 COPY --from=builder /h5p-php-library /usr/share/nginx/html/core
 COPY --from=builder /h5p-editor-php-library /usr/share/nginx/html/editor
 
