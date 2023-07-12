@@ -17,8 +17,7 @@ RUN rm h5p-editor-php-library/*.php
 FROM nginx:alpine
 
 # Copy configuration
-RUN mkdir /etc/nginx/templates
-COPY nginx.conf /etc/nginx/templates/nginx.conf
+COPY nginx.conf /etc/nginx/nginx.conf
 
 # Copy H5P files to webroot
 COPY --from=builder /h5p-php-library /usr/share/nginx/html/core
