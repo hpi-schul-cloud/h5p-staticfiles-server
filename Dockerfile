@@ -1,9 +1,9 @@
 # Use alpine as "builder" build stage
-FROM alpine:latest as builder
+FROM docker.io/debian:bullseye as builder
 
 # Install git
-RUN apk update
-RUN apk add git
+RUN apt-get update
+RUN apt-get install -y git
 
 # Clone H5P repositories
 RUN git clone https://github.com/h5p/h5p-php-library
