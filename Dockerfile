@@ -1,4 +1,4 @@
-# Use alpine as "builder"
+# Use alpine as "builder" build stage
 FROM alpine:latest as builder
 
 # Install git
@@ -13,8 +13,8 @@ RUN git clone https://github.com/h5p/h5p-editor-php-library
 RUN rm h5p-php-library/*.php
 RUN rm h5p-editor-php-library/*.php
 
-# Use nginx as server
-FROM nginx:alpine
+# Use nginx as server run stage
+FROM docker.io/nginx:1.25
 
 # Copy configuration
 COPY nginx.conf /etc/nginx/nginx.conf
@@ -25,3 +25,4 @@ COPY --from=builder /h5p-php-library /usr/share/nginx/html/core
 COPY --from=builder /h5p-editor-php-library /usr/share/nginx/html/editor
 
 EXPOSE 8080
+CMD ["nginx", "-g", "daemon off;"]
