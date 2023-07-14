@@ -5,9 +5,13 @@ FROM docker.io/debian:bullseye as builder
 RUN apt-get update
 RUN apt-get install -y git
 
+# the last used version from Lumi
+ENV LAST_USED_H5P_LIBRARY=661d4f6c7d7b1117587654941f5fcf91acb5f4eb
+ENV LAST_USED_H5P_EDITOR_LIBRARY=0365b081efa8b55ab9fd58594aa599f9630268f6
+
 # Clone H5P repositories
-RUN git clone https://github.com/h5p/h5p-php-library
-RUN git clone https://github.com/h5p/h5p-editor-php-library
+RUN git clone https://github.com/h5p/h5p-php-library && git -C h5p-php-library checkout $LAST_USED_H5P_LIBRARY
+RUN git clone https://github.com/h5p/h5p-editor-php-library && git -C h5p-editor-php-library checkout $LAST_USED_H5P_EDITOR_LIBRARY
 
 # Remove unused files
 RUN rm h5p-php-library/*.php
