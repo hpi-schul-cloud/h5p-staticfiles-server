@@ -1,0 +1,67 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: h5p-staticfiles-server-deployment
+  namespace: {{ NAMESPACE }}
+  labels:
+    app: h5p-staticfiles-server
+spec:
+  replicas: {{ H5P_STATICFILES_SERVER_REPLICAS|default("1", true) }}
+  selector:
+    matchLabels:
+      app: h5p-staticfiles-server
+  template:
+    metadata:
+      labels:
+        app: h5p-staticfiles-server
+    spec:
+      securityContext:
+        runAsUser: 101
+        runAsGroup: 101
+        fsGroup: 101
+        runAsNonRoot: true
+      containers:
+      - name: h5p-staticfiles-server
+        image: {{ H5P_STATICFILES_SERVER_IMAGE }}:{{ H5P_STATICFILES_SERVER_IMAGE_TAG }}
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: {{ H5P_PORT }}
+        envFrom:
+        - configMapRef:
+            name: h5p-staticfiles-server-configmap
+        livenessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /ping
+            port: {{ H5P_PORT }}
+            scheme: HTTP
+          periodSeconds: 15
+          successThreshold: 1
+          timeoutSeconds: 4
+        readinessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /ping
+            port: {{ H5P_PORT }}
+            scheme: HTTP
+          periodSeconds: 5
+          successThreshold: 1
+          timeoutSeconds: 4
+        startupProbe:
+          failureThreshold: 4
+          httpGet:
+            path: /ping
+            port: {{ H5P_PORT }}
+            scheme: HTTP
+          periodSeconds: 15
+          successThreshold: 1
+          timeoutSeconds: 4
+        resources:
+          # find reasonable limits
+          limits:
+            cpu: {{ H5P_STATICFIILES_SERVER_CPU_LIMITS|default("1000m", true) }}
+            memory: {{ H5P_STATICFIILES_SERVER_MEMORY_LIMITS|default("1Gi", true) }}
+          requests:
+            cpu: {{ H5P_STATICFIILES_SERVER_CPU_REQUESTS|default("100m", true) }}
+            memory: {{ H5P_STATICFIILES_SERVER_MEMORY_REQUESTS|default("128Mi", true) }}
+            

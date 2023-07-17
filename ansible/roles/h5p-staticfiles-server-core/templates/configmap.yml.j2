@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: h5p-staticfiles-server-configmap
+  namespace: {{ NAMESPACE }}
+  labels:
+    app: h5p-staticfiles-server
+data:  
+  TZ: "Europe/Berlin"
+
