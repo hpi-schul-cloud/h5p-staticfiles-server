@@ -67,7 +67,7 @@ jobs:
     needs:
       - build_and_push
       - branch_name
-    uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/deploy.yml@THR-28-docker-static-h5p-files #this should be change to THR-18-dev-feature-h5p-editor before merge
+    uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/deploy.yml@main 
     with:
       branch: ${{ needs.branch_name.outputs.branch }}
     secrets:
