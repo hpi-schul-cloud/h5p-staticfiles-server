@@ -3,7 +3,7 @@
       kubeconfig: ~/.kube/config 
       namespace: "{{ NAMESPACE }}"
       template: svc.yml.j2
-    when: FEATURE_H5P_EDITOR_ENABLED is defined and FEATURE_H5P_EDITOR_ENABLED|bool
+    when: WITH_H5P_EDITOR is defined and WITH_H5P_EDITOR|bool
 
   - name: Configmap
     kubernetes.core.k8s:
@@ -11,11 +11,11 @@
       namespace: "{{ NAMESPACE }}"
       template: configmap.yml.j2
       apply: yes
-    when: FEATURE_H5P_EDITOR_ENABLED is defined and FEATURE_H5P_EDITOR_ENABLED|bool
+    when: WITH_H5P_EDITOR is defined and WITH_H5P_EDITOR|bool
 
   - name: Deployment
     kubernetes.core.k8s:
       kubeconfig: ~/.kube/config 
       namespace: "{{ NAMESPACE }}"
       template: deployment.yml.j2
-    when: FEATURE_H5P_EDITOR_ENABLED is defined and FEATURE_H5P_EDITOR_ENABLED|bool
+    when: WITH_H5P_EDITOR is defined and WITH_H5P_EDITOR|bool
