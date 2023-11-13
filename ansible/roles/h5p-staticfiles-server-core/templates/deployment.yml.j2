@@ -7,6 +7,9 @@ metadata:
     app: h5p-staticfiles-server
     app.kubernetes.io/part-of: schulcloud-verbund
     app.kubernetes.io/version: {{ H5P_STATICFILES_SERVER_IMAGE_TAG }}
+    app.kubernetes.io/name: h5p-staticfiles-server
+    app.kubernetes.io/component: h5p
+    app.kubernetes.io/managed-by: ansible
     git.branch: {{ H5P_STATICFILES_SERVER_BRANCH_NAME }}
     git.repo: {{ H5P_STATICFILES_SERVER_REPO_NAME }}
 spec:
@@ -20,6 +23,9 @@ spec:
         app: h5p-staticfiles-server
         app.kubernetes.io/part-of: schulcloud-verbund
         app.kubernetes.io/version: {{ H5P_STATICFILES_SERVER_IMAGE_TAG }}
+        app.kubernetes.io/name: h5p-staticfiles-server
+        app.kubernetes.io/component: h5p
+        app.kubernetes.io/managed-by: ansible
         git.branch: {{ H5P_STATICFILES_SERVER_BRANCH_NAME }}
         git.repo: {{ H5P_STATICFILES_SERVER_REPO_NAME }}
     spec:
