@@ -78,3 +78,36 @@ spec:
           requests:
             cpu: {{ H5P_STATICFIILES_SERVER_CPU_REQUESTS|default("100m", true) }}
             memory: {{ H5P_STATICFIILES_SERVER_MEMORY_REQUESTS|default("128Mi", true) }}
+      affinity:
+        podAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 100
+            podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                - key: app.kubernetes.io/part-of
+                  operator: In
+                  values:
+                  - schulcloud-verbund
+              topologyKey: "kubernetes.io/hostname"
+              namespaceSelector: {}
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 10
+            podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                - key: app.kubernetes.io/name
+                  operator: In
+                  values:
+                  - h5p-staticfiles-server
+              topologyKey: "cloud.ionos.com/nodepool-name"
+          - weight: 10
+            podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                - key: app.kubernetes.io/name
+                  operator: In
+                  values:
+                  - h5p-staticfiles-server
+              topologyKey: "topology.kubernetes.io/zone"
