@@ -78,6 +78,7 @@ spec:
           requests:
             cpu: {{ H5P_STATICFIILES_SERVER_CPU_REQUESTS|default("100m", true) }}
             memory: {{ H5P_STATICFIILES_SERVER_MEMORY_REQUESTS|default("128Mi", true) }}
+{% if AFFINITY_ENABLE is defined and AFFINITY_ENABLE|bool %}
       affinity:
         podAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:
@@ -113,3 +114,4 @@ spec:
                   values:
                   - h5p-staticfiles-server
               topologyKey: "topology.kubernetes.io/zone"
+{% endif %}
