@@ -1,0 +1,16 @@
+.vagrant
+.vscode
+.project
+.pydevproject
+.settings
+.idea
+*.DS_Store
+nbproject
+*__pycache__
+*.pyc
+*egg-info
+*.log
+tests
+secrets
+*.swp
+venv
