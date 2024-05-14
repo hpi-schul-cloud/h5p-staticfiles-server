@@ -12,6 +12,8 @@ ENV LAST_USED_H5P_EDITOR_LIBRARY=0365b081efa8b55ab9fd58594aa599f9630268f6
 # Clone H5P repositories
 RUN git clone https://github.com/h5p/h5p-php-library && git -C h5p-php-library checkout $LAST_USED_H5P_LIBRARY
 RUN git clone https://github.com/h5p/h5p-editor-php-library && git -C h5p-editor-php-library checkout $LAST_USED_H5P_EDITOR_LIBRARY
+# Disable some elements like "Inhalts-Demo", "Tutorial", "Beispiele" buttons
+RUN echo ".h5p-tutorial-url,.h5p-example-url,.h5p-hub-demo-button{visibility:hidden;}" >> h5p-editor-php-library/styles/css/application.css
 
 # Remove unused files
 RUN rm h5p-php-library/*.php
