@@ -3,6 +3,12 @@ kind: Deployment
 metadata:
   name: h5p-staticfiles-server-deployment
   namespace: {{ NAMESPACE }}
+{% if ANNOTATIONS is defined and ANNOTATIONS|bool %}
+  annotations:
+{% if RELOADER is defined and RELOADER|bool %}
+    reloader.stakater.com/auto: "true"
+{% endif %}
+{% endif %}
   labels:
     app: h5p-staticfiles-server
     app.kubernetes.io/part-of: schulcloud-verbund
