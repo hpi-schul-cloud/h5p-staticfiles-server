@@ -2,8 +2,9 @@
 FROM docker.io/debian:bullseye as builder
 
 # Install git
-RUN apt-get update
-RUN apt-get install -y git
+RUN apt-get update && \
+    apt-get install -y git && \
+    rm -rf /var/lib/apt/lists/*
 
 # the last used version from Lumi
 ENV LAST_USED_H5P_LIBRARY=661d4f6c7d7b1117587654941f5fcf91acb5f4eb
@@ -20,7 +21,7 @@ RUN rm h5p-php-library/*.php
 RUN rm h5p-editor-php-library/*.php
 
 # Use nginx as server for run stage
-FROM docker.io/nginx:1.25
+FROM docker.io/nginx:1.27
 
 # Copy configuration
 COPY nginx.conf /etc/nginx/nginx.conf
