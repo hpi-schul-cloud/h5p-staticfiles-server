@@ -40,6 +40,8 @@ spec:
         runAsGroup: 101
         fsGroup: 101
         runAsNonRoot: true
+      os:
+        name: linux
       containers:
       - name: h5p-staticfiles-server
         image: {{ H5P_STATICFILES_SERVER_IMAGE }}:{{ H5P_STATICFILES_SERVER_IMAGE_TAG }}
