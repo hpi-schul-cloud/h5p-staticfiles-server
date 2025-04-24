@@ -1,0 +1,12 @@
+services:
+  h5p-staticfiles-server:
+    build:
+      context: .
+    restart: always
+    ports:
+      - '8080:8080'
+
+networks:
+  default:
+    name: schulcloudserver_schulcloud-server-network
+    external: true

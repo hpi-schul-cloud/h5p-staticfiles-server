@@ -7,8 +7,8 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 # the last used version from Lumi
-ENV LAST_USED_H5P_LIBRARY=661d4f6c7d7b1117587654941f5fcf91acb5f4eb
-ENV LAST_USED_H5P_EDITOR_LIBRARY=0365b081efa8b55ab9fd58594aa599f9630268f6
+ENV LAST_USED_H5P_LIBRARY=b5f527e140c17da2792283d369f621e9b3f969ff
+ENV LAST_USED_H5P_EDITOR_LIBRARY=f3a60ec2bdbe410cb2b11e8f8cb4cf206c41364b
 
 # Clone H5P repositories
 RUN git clone https://github.com/h5p/h5p-php-library && git -C h5p-php-library checkout $LAST_USED_H5P_LIBRARY
