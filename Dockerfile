@@ -21,7 +21,7 @@ RUN rm h5p-php-library/*.php
 RUN rm h5p-editor-php-library/*.php
 
 # Use nginx as server for run stage
-FROM docker.io/nginx:1.27
+FROM docker.io/nginx:1.29
 
 # Copy configuration
 COPY nginx.conf /etc/nginx/nginx.conf
