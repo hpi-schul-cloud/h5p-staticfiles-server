@@ -22,6 +22,7 @@
       kubeconfig: ~/.kube/config 
       namespace: "{{ NAMESPACE }}"
       template: deployment.yml.j2
-    when: WITH_H5P_EDITOR is defined and WITH_H5P_EDITOR|bool
+      apply: yes
+      state: "{{ 'present' if WITH_H5P_EDITOR is defined and WITH_H5P_EDITOR|bool else 'absent'}}"
     tags:
       - deployment
